@@ -21,7 +21,8 @@
 
 import sys
 import random
-from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2 import QtCore, QtWidgets, QtGui, QtWebEngineWidgets, QtUiTools
+from PySide2.QtCore import QFile
 
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -45,10 +46,25 @@ class MyWidget(QtWidgets.QWidget):
         self.text.setText(random.choice(self.hello))
 
 if __name__ == "__main__":
+    # app = QtWidgets.QApplication([])
+
+    # widget = MyWidget()
+    # widget.resize(800, 600)
+    # widget.show()
+    #
+    # sys.exit(app.exec_())
+
     app = QtWidgets.QApplication([])
-
-    widget = MyWidget()
-    widget.resize(800, 600)
-    widget.show()
-
-    sys.exit(app.exec_())
+    file = QFile("testQtDesigner.ui")
+    file.open(QFile.ReadOnly)
+    loader = QtUiTools.QUiLoader()
+    window = loader.load(file)
+    window.show()
+    view = QtWebEngineWidgets.QWebEngineView()
+    view.setGeometry(100, 150, 1280, 550)
+    url = "http://google.com"
+    view.setWindowTitle("Browser - " + url)
+    view.load(QtCore.QUrl(url))
+    view.show()
+    app.exec_()
+    # QtWebEngine.QtWebEngine.initialize()
