@@ -60,6 +60,7 @@ if __name__ == "__main__":
     loader = QtUiTools.QUiLoader()
     window = loader.load(file)
     window.show()
+
     view = QtWebEngineWidgets.QWebEngineView()
     view.setGeometry(100, 150, 1280, 550)
     url = "http://google.com"
