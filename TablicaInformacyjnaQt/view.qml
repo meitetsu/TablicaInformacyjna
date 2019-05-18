@@ -6,12 +6,281 @@ Page {
     width: 1920
     height: 1080
 
-    Image {
-        source: "landscape.jpg"
-        sourceSize.width: 1920
-        sourceSize.height: 1080
+    property int counter: 0
+    property bool branch // Controls if a state has a branch
+    property int currentIndex: 0 // Current index for outer loop
+    property int innerCounter: 0 // Current index for inner (branch) loop
 
+
+    property variant statesParameters: [
+        [true, 5], [false, 1], [true, 5], [false, 1], [true, 5]
+    ]
+
+    property variant imagesList: [
+        [ "landscape.jpg" ], [ "landscape02.jpg" ], [ "landscape03.jpg" ]
+    ]
+
+    property variant stateNames: [
+        ["state11", "state12", "state13", "state14", "state15"],
+        ["state2"],
+        ["state31", "state32", "state33", "state34", "state35"],
+        ["state4"],
+        ["state51", "state52", "state53", "state54", "state55"]
+    ]
+
+    Rectangle {
+        id: top1
+        width: 1920
+        height: 1080
+        color: "#f9f0ef"
+
+
+
+        Rectangle {
+            id: frame
+            x: 60; y: 60
+            width: 350
+            height: 30
+            color: "white"
+
+            Rectangle {
+              Text {
+                id: literal
+                text: "This is the initial state. A timer generates state transitions."
+              }
+            }
+          }
+
+        states: [
+            State {
+              name: "state11"
+              PropertyChanges {target: top1; color: "tan"}
+              StateChangeScript {
+                name: "stateScript11"
+                script: {
+                  literal.text = "Cupressaceae - State 11"
+                  picture.source = imagesList[0][2]
+                }
+              }
+            },
+            State {
+              name: "state12"
+              PropertyChanges {target: top1; color: "teal"}
+              StateChangeScript {
+                name: "stateScript12"
+                script: {
+                  literal.text = "Cupressaceae - State 12"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state13"
+              PropertyChanges {target: top1; color: "plum"}
+              StateChangeScript {
+                name: "stateScript13"
+                script: {
+                  literal.text = "Cupressaceae - State 13"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state14"
+              PropertyChanges {target: top1; color: "steelblue"}
+              StateChangeScript {
+                name: "stateScript14"
+                script: {
+                  literal.text = "Cupressaceae - State 14"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state15"
+              PropertyChanges {target: top1; color: "darkorange"}
+              StateChangeScript {
+                name: "stateScript15"
+                script: {
+                  literal.text = "Cupressaceae - State 15"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state2"
+              PropertyChanges {target: top1; color: "lavender"}
+              StateChangeScript {
+                name: "stateScript2"
+                script: {
+                  literal.text = "Cupressaceae - State 2"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+
+            State {
+              name: "state31"
+              PropertyChanges {target: top1; color: "olive"}
+              StateChangeScript {
+                name: "stateScript31"
+                script: {
+                  literal.text = "Cupressaceae - State 31"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state32"
+              PropertyChanges {target: top1; color: "darksalmon"}
+              StateChangeScript {
+                name: "stateScript32"
+                script: {
+                  literal.text = "Cupressaceae - State 32"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state33"
+              PropertyChanges {target: top1; color: "darkolivegreen"}
+              StateChangeScript {
+                name: "stateScript33"
+                script: {
+                  literal.text = "Cupressaceae - State 33"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state34"
+              PropertyChanges {target: top1; color: "lightblue"}
+              StateChangeScript {
+                name: "stateScript34"
+                script: {
+                  literal.text = "Cupressaceae - State 34"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state35"
+              PropertyChanges {target: top1; color: "wheat"}
+              StateChangeScript {
+                name: "stateScript35"
+                script: {
+                  literal.text = "Cupressaceae - State 35"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state4"
+              PropertyChanges {target: top1; color: "thistle"}
+              StateChangeScript {
+                name: "stateScript4"
+                script: {
+                  literal.text = "Cupressaceae - State 4"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state51"
+              PropertyChanges {target: top1; color: "mediumaquamarine"}
+              StateChangeScript {
+                name: "stateScript51"
+                script: {
+                  literal.text = "Cupressaceae - State 51"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state52"
+              PropertyChanges {target: top1; color: "lightpink"}
+              StateChangeScript {
+                name: "stateScript52"
+                script: {
+                  literal.text = "Cupressaceae - State 52"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state53"
+              PropertyChanges {target: top1; color: "darkseagreen"}
+              StateChangeScript {
+                name: "stateScript53"
+                script: {
+                  literal.text = "Cupressaceae - State 53"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state54"
+              PropertyChanges {target: top1; color: "lightsalmon"}
+              StateChangeScript {
+                name: "stateScript54"
+                script: {
+                  literal.text = "Cupressaceae - State 54"
+                  picture.source = imagesList[0][0]
+                }
+              }
+            },
+            State {
+              name: "state55"
+              PropertyChanges {target: top1; color: "mediumvioletred"}
+              StateChangeScript {
+                name: "stateScript55"
+                script: {
+                  literal.text = "Roses - State55"
+                  picture.source = imagesList[0][1]
+                }
+              }
+            }
+          ]
+
+        Timer {
+            id: imageTime
+            interval: 2000
+            running: true
+            repeat: true
+
+            onTriggered: {
+
+                if (counter < 5)
+                    branch = statesParameters[counter][0];
+                else
+                    Qt.quit();
+
+                if (branch == false) {
+                    innerCounter = 0;
+                    top1.state = stateNames[counter][innerCounter];
+                    counter = counter + 1;
+                    currentIndex = counter;
+                } else {
+                    if (innerCounter < statesParameters[counter][1]) {
+                        top1.state = stateNames[counter][innerCounter];
+                        innerCounter = innerCounter+1;
+                    } else {
+                        counter = currentIndex+1;
+                        if (counter >= 5)
+                            Qt.quit();
+                    }
+                }
+
+            }
+        }
     }
+
+//    Image {
+//        source: "landscape.jpg"
+//        sourceSize.width: 1920
+//        sourceSize.height: 1080
+
+//    }
 
     Rectangle {
         y: 880
@@ -126,6 +395,8 @@ Page {
                datePl.text = date.toLocaleDateString(Qt.locale("pl_PL"), "dd.MM.yyyy")
            }
        }
+
+
 
 //       Text {
 //           id: name
