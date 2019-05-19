@@ -301,6 +301,7 @@ Page {
     }
 
     Rectangle {
+        id:marquee
         x: 280
         y: 910
         width: 1600
@@ -318,30 +319,15 @@ Page {
             horizontalAlignment: Text.AlignLeft
             //anchors.horizontalCenter: parent
             anchors.verticalCenter: parent.verticalCenter
-        }
 
-//        function marquee(x,typ,p){
-//            typ={
-//                'up':[-1,'top','offsetHeight'],
-//                'down':[1,'top','offsetHeight'],
-//                'left':[-1,'left','offsetWidth'],
-//                'right':[1,'left','offsetWidth']
-//            }[typ];
-//            var m=this,mOut,mIn,turlaj,T,i=typ[0],j=0,p=p||30;
-//            (mOut=document.getElementById(x)).onmouseover=function(){T=clearInterval(T)};
-//                mOut.appendChild((mIn=mOut.childNodes)[0].cloneNode(1));
-//                mOut.onmouseout=function(e){
-//                    e=e||event;e=e.toElement||e.relatedTarget;
-//                    if(e)do{if(e==this)return!1}while(e=e.parentNode)
-//                    T=setInterval(turlaj,p)
-//                };
-//            mOut=mIn[0][typ[2]];
-//            turlaj=function(){
-//                mIn[0].style[typ[1]]=(-2*i*(j+=i)<(i-1)*mOut?(j=(-i-1)/2*mOut+i):j)+'px';
-//                mIn[1].style[typ[1]]=j+mOut+'px';
-//            }
-//            T=setInterval(turlaj,p);
-//        }
+            x:parent.width
+            NumberAnimation on x{
+                from: marquee.width
+                to: -1*message.width
+                loops: Animation.Infinite
+                duration: 3000
+            }
+        }
     }
 
     Rectangle {
