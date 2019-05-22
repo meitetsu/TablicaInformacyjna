@@ -1,7 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import Qt.labs.folderlistmodel 2.12
 
 Page {
+    id: top1
     visible: true
     width: 1920
     height: 1080
@@ -17,7 +19,9 @@ Page {
     ]
 
     property variant imagesList: [
-        [ "landscape.jpg" ], [ "landscape02.jpg" ], [ "landscape03.jpg" ]
+        [ "images/landscape.jpg",
+         "images/landscape02.jpg",
+         "images/landscape03.jpg" ]
     ]
 
     property variant stateNames: [
@@ -28,252 +32,263 @@ Page {
         ["state51", "state52", "state53", "state54", "state55"]
     ]
 
-    Rectangle {
-        id: top1
+    property ListModel anotherModel: ListModel {}
+
+    property FolderListModel folderModel: FolderListModel {
+        folder: "images"
+        //id: folderModel
+        nameFilters: ["*.jpg", "*.png", "*.gif"]
+    }
+
+    Image {
+        id: picture
         width: 1920
         height: 1080
-        color: "#f9f0ef"
+        fillMode: Image.PreserveAspectFit
+        //source: "images/landscape.jpg"
+    }
 
+    Timer {
+        id: imageTime
+        interval: 10000
+        running: true
+        repeat: true
 
+        onTriggered: {
 
-        Rectangle {
-            id: frame
-            x: 60; y: 60
-            width: 350
-            height: 30
-            color: "white"
+            if (counter < 5)
+                branch = statesParameters[counter][0];
+            else
+                Qt.quit();
 
-            Rectangle {
-              Text {
-                id: literal
-                text: "This is the initial state. A timer generates state transitions."
-              }
-            }
-          }
-
-        states: [
-            State {
-              name: "state11"
-              PropertyChanges {target: top1; color: "tan"}
-              StateChangeScript {
-                name: "stateScript11"
-                script: {
-                  literal.text = "Cupressaceae - State 11"
-                  picture.source = imagesList[0][2]
-                }
-              }
-            },
-            State {
-              name: "state12"
-              PropertyChanges {target: top1; color: "teal"}
-              StateChangeScript {
-                name: "stateScript12"
-                script: {
-                  literal.text = "Cupressaceae - State 12"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state13"
-              PropertyChanges {target: top1; color: "plum"}
-              StateChangeScript {
-                name: "stateScript13"
-                script: {
-                  literal.text = "Cupressaceae - State 13"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state14"
-              PropertyChanges {target: top1; color: "steelblue"}
-              StateChangeScript {
-                name: "stateScript14"
-                script: {
-                  literal.text = "Cupressaceae - State 14"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state15"
-              PropertyChanges {target: top1; color: "darkorange"}
-              StateChangeScript {
-                name: "stateScript15"
-                script: {
-                  literal.text = "Cupressaceae - State 15"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state2"
-              PropertyChanges {target: top1; color: "lavender"}
-              StateChangeScript {
-                name: "stateScript2"
-                script: {
-                  literal.text = "Cupressaceae - State 2"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-
-            State {
-              name: "state31"
-              PropertyChanges {target: top1; color: "olive"}
-              StateChangeScript {
-                name: "stateScript31"
-                script: {
-                  literal.text = "Cupressaceae - State 31"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state32"
-              PropertyChanges {target: top1; color: "darksalmon"}
-              StateChangeScript {
-                name: "stateScript32"
-                script: {
-                  literal.text = "Cupressaceae - State 32"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state33"
-              PropertyChanges {target: top1; color: "darkolivegreen"}
-              StateChangeScript {
-                name: "stateScript33"
-                script: {
-                  literal.text = "Cupressaceae - State 33"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state34"
-              PropertyChanges {target: top1; color: "lightblue"}
-              StateChangeScript {
-                name: "stateScript34"
-                script: {
-                  literal.text = "Cupressaceae - State 34"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state35"
-              PropertyChanges {target: top1; color: "wheat"}
-              StateChangeScript {
-                name: "stateScript35"
-                script: {
-                  literal.text = "Cupressaceae - State 35"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state4"
-              PropertyChanges {target: top1; color: "thistle"}
-              StateChangeScript {
-                name: "stateScript4"
-                script: {
-                  literal.text = "Cupressaceae - State 4"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state51"
-              PropertyChanges {target: top1; color: "mediumaquamarine"}
-              StateChangeScript {
-                name: "stateScript51"
-                script: {
-                  literal.text = "Cupressaceae - State 51"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state52"
-              PropertyChanges {target: top1; color: "lightpink"}
-              StateChangeScript {
-                name: "stateScript52"
-                script: {
-                  literal.text = "Cupressaceae - State 52"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state53"
-              PropertyChanges {target: top1; color: "darkseagreen"}
-              StateChangeScript {
-                name: "stateScript53"
-                script: {
-                  literal.text = "Cupressaceae - State 53"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state54"
-              PropertyChanges {target: top1; color: "lightsalmon"}
-              StateChangeScript {
-                name: "stateScript54"
-                script: {
-                  literal.text = "Cupressaceae - State 54"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state55"
-              PropertyChanges {target: top1; color: "mediumvioletred"}
-              StateChangeScript {
-                name: "stateScript55"
-                script: {
-                  literal.text = "Roses - State55"
-                  picture.source = imagesList[0][1]
-                }
-              }
-            }
-          ]
-
-        Timer {
-            id: imageTime
-            interval: 2000
-            running: true
-            repeat: true
-
-            onTriggered: {
-
-                if (counter < 5)
-                    branch = statesParameters[counter][0];
-                else
-                    Qt.quit();
-
-                if (branch == false) {
-                    innerCounter = 0;
+            if (branch == false) {
+                innerCounter = 0;
+                top1.state = stateNames[counter][innerCounter];
+                counter = counter + 1;
+                currentIndex = counter;
+            } else {
+                if (innerCounter < statesParameters[counter][1]) {
                     top1.state = stateNames[counter][innerCounter];
-                    counter = counter + 1;
-                    currentIndex = counter;
+                    innerCounter = innerCounter+1;
                 } else {
-                    if (innerCounter < statesParameters[counter][1]) {
-                        top1.state = stateNames[counter][innerCounter];
-                        innerCounter = innerCounter+1;
-                    } else {
-                        counter = currentIndex+1;
-                        if (counter >= 5)
-                            Qt.quit();
-                    }
+                    counter = currentIndex+1;
+                    if (counter >= 5)
+                        Qt.quit();
                 }
-
             }
+
         }
     }
+
+    states: [
+        State {
+          name: "state11"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript11"
+            script: {
+                picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state12"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript12"
+            script: {
+              picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
+          name: "state13"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript13"
+            script: { picture.source = imagesList[0][2]
+            }
+          }
+        },
+        State {
+          name: "state14"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript14"
+            script: { picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state15"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript15"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
+          name: "state2"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
+            script: { picture.source = imagesList[0][2]
+            }
+          }
+        },
+
+        State {
+          name: "state31"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript31"
+            script: { picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state32"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript32"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
+          name: "state33"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript33"
+            script: { picture.source = imagesList[0][2]
+            }
+          }
+        },
+        State {
+          name: "state34"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript34"
+            script: { picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state35"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript35"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
+          name: "state4"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: { picture.source = imagesList[0][2]
+            }
+          }
+        },
+        State {
+          name: "state51"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript51"
+            script: { picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state52"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript52"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
+          name: "state53"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript53"
+            script: { picture.source = imagesList[0][2]
+            }
+          }
+        },
+        State {
+          name: "state54"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript54"
+            script: { picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state55"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript55"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        }
+      ]
+
+//    Rectangle {
+//        id: top1
+//        width: 600
+//        height: 600
+//        color: "#f9f0ef"
+
+//        ListView {
+//            width: 1920
+//            height: 1080
+
+//            FolderListModel {
+//                folder: "images"
+//                id: folderModel
+//                nameFilters: ["*.jpg", "*.png", "*.gif"]
+//            }
+
+//            Image {
+//                width: 1920
+//                height: 1080
+//                fillMode: Image.PreserveAspectFit
+//                smooth: true
+//                source: folderModel.folder + "/" + "landscape.jpg"
+
+//            }
+
+//            Component {
+//                id: fileDelegate
+//                Column {
+//                    Image {
+//                        width: 200
+//                        height: 200
+//                        fillMode: Image.PreserveAspectFit
+//                        smooth: true
+//                        source: folderModel.folder + "/" + fileName
+//                    }
+//                    Text { text: fileName }
+//                }
+//            }
+
+//                Text {
+//                    id: intext
+//                    text: fileName
+//                    onTextChanged: anotherModel.append([{name: intext.text }])
+//                }
+
+
+           // model: folderModel
+            //delegate: fileDelegate
+       // }
+//   }
 
 //    Image {
 //        source: "landscape.jpg"
@@ -301,7 +316,7 @@ Page {
     }
 
     Rectangle {
-        id:marquee
+        id: marquee
         x: 280
         y: 910
         width: 1600
@@ -313,19 +328,22 @@ Page {
             text: qsTr("Przykładowy tekst niemający większego sensu, ale coś tu trzeba wpisać.")
             font {
                 capitalization: Font.AllUppercase
-                family: "DejaVu Serif"
-                pixelSize: 50
+                weight: Font.DemiBold
+                family: "Liberation Sans Narrow"
+                pixelSize: 70
             }
+            style: Text.Outline
+            styleColor: "gray"
             horizontalAlignment: Text.AlignLeft
             //anchors.horizontalCenter: parent
             anchors.verticalCenter: parent.verticalCenter
 
             x:parent.width
-            NumberAnimation on x{
+            NumberAnimation on x {
                 from: marquee.width
                 to: -1*message.width
                 loops: Animation.Infinite
-                duration: 3000
+                duration: 12000
             }
         }
     }
