@@ -1,6 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.12
+import QtMultimedia 5.12
+import QtWebView 1.1
+import QtWebEngine 1.8
 
 Page {
     id: top1
@@ -8,36 +11,50 @@ Page {
     width: 1920
     height: 1080
 
-    property int counter: 0
+
     property bool branch // Controls if a state has a branch
     property int currentIndex: 0 // Current index for outer loop
     property int innerCounter: 0 // Current index for inner (branch) loop
 
 
     property variant statesParameters: [
-        [true, 5], [false, 1], [true, 5], [false, 1], [true, 5]
+        [true, 5], [false, 5], [true, 5], [false, 5], [true, 5]
     ]
 
     property variant imagesList: [
-        [ "images/landscape.jpg",
-         "images/landscape02.jpg",
-         "images/landscape03.jpg" ]
+        [ "images/landscape1.jpg",
+         "images/landscape2.jpg",
+         "images/landscape3.jpg" ]
     ]
 
     property variant stateNames: [
         ["state11", "state12", "state13", "state14", "state15"],
-        ["state2"],
+        //["state2"],
+        ["state21", "state22", "state23", "state24", "state25"],
         ["state31", "state32", "state33", "state34", "state35"],
-        ["state4"],
+        //["state4"],
+        ["state41", "state42", "state43", "state44", "state45"],
         ["state51", "state52", "state53", "state54", "state55"]
     ]
 
     property ListModel anotherModel: ListModel {}
 
-    property FolderListModel folderModel: FolderListModel {
+    property FolderListModel imageFolderModel: FolderListModel {
         folder: "images"
-        //id: folderModel
+        id: imageFolderModel
         nameFilters: ["*.jpg", "*.png", "*.gif"]
+    }
+
+    property FolderListModel videoFolderModel: FolderListModel {
+        folder: "video"
+        id: videoFolderModel
+        nameFilters: ["*.avi"]
+    }
+
+    property FolderListModel htmlFolderModel: FolderListModel {
+        folder: "html"
+        id: htmlFolderModel
+        nameFilters: ["*.html", "*.htm"]
     }
 
     Image {
@@ -48,34 +65,105 @@ Page {
         //source: "images/landscape.jpg"
     }
 
+    Video {
+        id: video
+        width: 1920
+        height: 1080
+        //source: "video/flame.avi"
+        autoPlay: true
+        loops: MediaPlayer.Infinite
+    }
+
+    WebView {
+        id: webView
+        anchors.fill: parent
+        //url: "http://www.google.pl/"
+    }
+
+    property int counter: 0
+
     Timer {
         id: imageTime
         interval: 10000
         running: true
         repeat: true
 
+        /* https://wiki.qt.io/QML_States_Controlling */
+
         onTriggered: {
 
-            if (counter < 5)
+            if (counter < 5) {
                 branch = statesParameters[counter][0];
-            else
-                Qt.quit();
+            }
+            else {
+                Qt.quit()
+            }
 
             if (branch == false) {
                 innerCounter = 0;
                 top1.state = stateNames[counter][innerCounter];
                 counter = counter + 1;
                 currentIndex = counter;
-            } else {
-                if (innerCounter < statesParameters[counter][1]) {
+                if (innerCounter < 5) {
                     top1.state = stateNames[counter][innerCounter];
-                    innerCounter = innerCounter+1;
-                } else {
-                    counter = currentIndex+1;
-                    if (counter >= 5)
-                        Qt.quit();
+                    innerCounter = innerCounter + 1
                 }
             }
+            else {
+                if (innerCounter < statesParameters[counter][1]) {
+                    top1.state = stateNames[counter][innerCounter];
+                    innerCounter = innerCounter + 1;
+                }
+                else {
+                    counter = currentIndex + 1;
+                    if (counter >= 5)
+                        Qt.quit();
+                        //counter = 0;
+                }
+            }
+
+//            if (counter < 5 && innerCounter < 5) {
+////                branch = statesParameters[counter][0];
+//                top1.state = stateNames[counter][innerCounter]
+//                innerCounter = innerCounter + 1
+//                currentIndex = counter;
+//                if (innerCounter > 5) {
+//                    counter = currentIndex + 1
+//                    innerCounter = 0;
+//                }
+//            }
+
+//            else
+//                Qt.quit();
+//                //counter = 0;
+
+
+//            if (branch == false) {
+//                innerCounter = 0;
+//                top1.state = stateNames[counter][innerCounter];
+//                counter = counter + 1;
+//                currentIndex = counter;
+//            }
+//            else {
+//                if (innerCounter < statesParameters[counter][1]) {
+//                    top1.state = stateNames[counter][innerCounter];
+//                    innerCounter = innerCounter + 1;
+//                }
+//                else {
+//                    counter = currentIndex + 1;
+//                    if (counter >= 5)
+//                        Qt.quit();
+//                        //counter = 0;
+//                }
+//            }
+
+
+//            if (innerCounter < 5) {
+//                innerCounter = 0;
+//                top1.state = stateNames[counter][innerCounter];
+//                innerCounter = innerCounter + 1
+//            }
+
 
         }
     }
@@ -87,7 +175,8 @@ Page {
           StateChangeScript {
             name: "stateScript11"
             script: {
-                picture.source = imagesList[0][0]
+                picture.source = imageFolderModel.folder + "/landscape1.jpg"
+                //video.play()
             }
           }
         },
@@ -97,7 +186,8 @@ Page {
           StateChangeScript {
             name: "stateScript12"
             script: {
-              picture.source = imagesList[0][1]
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video1.avi"
             }
           }
         },
@@ -106,7 +196,11 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript13"
-            script: { picture.source = imagesList[0][2]
+            script: {
+                video.stop()
+//                picture.visible = true
+//                picture.source = imageFolderModel.folder + "/landscape2.jpg"
+                webView.url = "http://www.columbia.edu/~fdc/sample.html"
             }
           }
         },
@@ -115,7 +209,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript14"
-            script: { picture.source = imagesList[0][0]
+            script: {
+                webView.visible = false
+                picture.visible = true
+                picture.source = imageFolderModel.folder + "/landscape3.jpg"
             }
           }
         },
@@ -124,12 +221,56 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript15"
+            script: { picture.source = imageFolderModel.folder + "/landscape1.jpg"
+            }
+          }
+        },
+        State {
+          name: "state21"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
+            script: { //picture.source = imageFolderModel.folder + "/landscape2.jpg"
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video2.avi"
+            }
+          }
+        },
+        State {
+          name: "state22"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
+            script: {
+//                picture.visible = false
+//                video.source = videoFolderModel.folder + "/video2.avi"
+                //video.play()
+            }
+          }
+        },
+        State {
+          name: "state23"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
+            script: {
+                video.stop()
+                picture.visible = true
+                picture.source = imagesList[0][0]
+            }
+          }
+        },
+        State {
+          name: "state24"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
             script: { picture.source = imagesList[0][1]
             }
           }
         },
         State {
-          name: "state2"
+          name: "state25"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript2"
@@ -143,7 +284,9 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript31"
-            script: { picture.source = imagesList[0][0]
+            script: {
+                video.stop()
+                picture.source = imageFolderModel.folder + "/landscape1.jpg"
             }
           }
         },
@@ -152,7 +295,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript32"
-            script: { picture.source = imagesList[0][1]
+            script: {
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video3.avi"
+                //video.play()
             }
           }
         },
@@ -161,7 +307,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript33"
-            script: { picture.source = imagesList[0][2]
+            script: {
+                video.stop()
+                picture.source = imagesList[0][2]
+                picture.visible = true
             }
           }
         },
@@ -170,7 +319,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript34"
-            script: { picture.source = imagesList[0][0]
+            script: { //picture.source = imagesList[0][0]
+                picture.visible = false
+                webView.url = "http://www.ibdhost.com/help/html/"
+                webView.visible = true
             }
           }
         },
@@ -179,12 +331,48 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript35"
-            script: { picture.source = imagesList[0][1]
+            script: {
+                webView.visible = false
+                picture.source = imagesList[0][1]
+                picture.visible = true
             }
           }
         },
         State {
-          name: "state4"
+          name: "state41"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: { picture.source = imageFolderModel.folder + "/landscape3.jpg"
+            }
+          }
+        },
+        State {
+          name: "state42"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: {
+//                picture.visible = false
+//                video.source = videoFolderModel.folder + "/video4.avi"
+                //video.play()
+            }
+          }
+        },
+        State {
+          name: "state43"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: {
+                video.stop()
+                picture.source = imagesList[0][1]
+                picture.visible = true
+            }
+          }
+        },
+        State {
+          name: "state44"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript4"
@@ -193,11 +381,20 @@ Page {
           }
         },
         State {
+          name: "state45"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: { picture.source = imagesList[0][1]
+            }
+          }
+        },
+        State {
           name: "state51"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript51"
-            script: { picture.source = imagesList[0][0]
+            script: { picture.source = imageFolderModel.folder + "/landscape1.jpg"
             }
           }
         },
@@ -206,7 +403,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript52"
-            script: { picture.source = imagesList[0][1]
+            script: {
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video5.avi"
+                //video.play()
             }
           }
         },
@@ -215,7 +415,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript53"
-            script: { picture.source = imagesList[0][2]
+            script: {
+                video.stop()
+                picture.source = imagesList[0][2]
+                picture.visible = true
             }
           }
         },
@@ -224,7 +427,9 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript54"
-            script: { picture.source = imagesList[0][0]
+            script: { //picture.source = imagesList[0][0]
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video4.avi"
             }
           }
         },
@@ -233,7 +438,10 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript55"
-            script: { picture.source = imagesList[0][1]
+            script: { //picture.source = imagesList[0][1]
+                video.stop()
+                webView.url = "http://csis.pace.edu/~wolf/HTML/htmlnotepad.htm"
+                webView.visible = true
             }
           }
         }
@@ -412,6 +620,8 @@ Page {
 
     }
 
+
+
 //    ListView {
 //        anchors.fill: parent;
 //        model: Qt.fontFamilies()
@@ -426,5 +636,3 @@ Page {
 //        }
 //    }
 }
-
-

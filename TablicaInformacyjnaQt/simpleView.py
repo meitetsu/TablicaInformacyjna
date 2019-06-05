@@ -4,6 +4,9 @@
 from PySide2.QtWidgets import QApplication, QLCDNumber
 from PySide2.QtQuick import QQuickView
 from PySide2.QtCore import QUrl, QTimer, QTime
+#from PySide2.QtQml import QQmlEngine
+#import PySide2.QtMultimedia
+#from importlib import import_module
 
 import sys
 
@@ -36,6 +39,9 @@ class Clock(QLCDNumber) :
         self.display(text)
 
 app = QApplication([])
+#engine = QQmlEngine()
+#print(engine.importPathList())
+#QtMultimedia = import_module('PySide2.QtMultimedia')
 # clock = Clock()
 view = QQuickView()
 url = QUrl("view.qml")
