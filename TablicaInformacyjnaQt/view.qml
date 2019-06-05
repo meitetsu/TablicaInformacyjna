@@ -18,22 +18,22 @@ Page {
 
 
     property variant statesParameters: [
-        [true, 5], [false, 5], [true, 5], [false, 5], [true, 5]
+        [true, 5], [false, 1], [true, 5], [false, 1], [true, 5]
     ]
 
-    property variant imagesList: [
-        [ "images/landscape1.jpg",
-         "images/landscape2.jpg",
-         "images/landscape3.jpg" ]
-    ]
+//    property variant imagesList: [
+//        [ "images/landscape1.jpg", "images/landscape2.jpg", "images/landscape3.jpg",
+//         "images/landscape4.jpg", "images/landscape5.jpg", "images/landscape6.jpg",
+//         "images/landscape7.jpg", "images/landscape8.jpg", "images/landscape9.jpg" ]
+//    ]
 
     property variant stateNames: [
         ["state11", "state12", "state13", "state14", "state15"],
-        //["state2"],
-        ["state21", "state22", "state23", "state24", "state25"],
+        ["state2"],
+        //["state21", "state22", "state23", "state24", "state25"],
         ["state31", "state32", "state33", "state34", "state35"],
-        //["state4"],
-        ["state41", "state42", "state43", "state44", "state45"],
+        ["state4"],
+        //["state41", "state42", "state43", "state44", "state45"],
         ["state51", "state52", "state53", "state54", "state55"]
     ]
 
@@ -121,50 +121,6 @@ Page {
                         //counter = 0;
                 }
             }
-
-//            if (counter < 5 && innerCounter < 5) {
-////                branch = statesParameters[counter][0];
-//                top1.state = stateNames[counter][innerCounter]
-//                innerCounter = innerCounter + 1
-//                currentIndex = counter;
-//                if (innerCounter > 5) {
-//                    counter = currentIndex + 1
-//                    innerCounter = 0;
-//                }
-//            }
-
-//            else
-//                Qt.quit();
-//                //counter = 0;
-
-
-//            if (branch == false) {
-//                innerCounter = 0;
-//                top1.state = stateNames[counter][innerCounter];
-//                counter = counter + 1;
-//                currentIndex = counter;
-//            }
-//            else {
-//                if (innerCounter < statesParameters[counter][1]) {
-//                    top1.state = stateNames[counter][innerCounter];
-//                    innerCounter = innerCounter + 1;
-//                }
-//                else {
-//                    counter = currentIndex + 1;
-//                    if (counter >= 5)
-//                        Qt.quit();
-//                        //counter = 0;
-//                }
-//            }
-
-
-//            if (innerCounter < 5) {
-//                innerCounter = 0;
-//                top1.state = stateNames[counter][innerCounter];
-//                innerCounter = innerCounter + 1
-//            }
-
-
         }
     }
 
@@ -211,8 +167,8 @@ Page {
             name: "stateScript14"
             script: {
                 webView.visible = false
+                picture.source = imageFolderModel.folder + "/landscape2.jpg"
                 picture.visible = true
-                picture.source = imageFolderModel.folder + "/landscape3.jpg"
             }
           }
         },
@@ -221,12 +177,14 @@ Page {
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript15"
-            script: { picture.source = imageFolderModel.folder + "/landscape1.jpg"
+            script: { picture.source = imageFolderModel.folder + "/landscape3.jpg"
             }
           }
         },
+
+
         State {
-          name: "state21"
+          name: "state2"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript2"
@@ -236,48 +194,7 @@ Page {
             }
           }
         },
-        State {
-          name: "state22"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript2"
-            script: {
-//                picture.visible = false
-//                video.source = videoFolderModel.folder + "/video2.avi"
-                //video.play()
-            }
-          }
-        },
-        State {
-          name: "state23"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript2"
-            script: {
-                video.stop()
-                picture.visible = true
-                picture.source = imagesList[0][0]
-            }
-          }
-        },
-        State {
-          name: "state24"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript2"
-            script: { picture.source = imagesList[0][1]
-            }
-          }
-        },
-        State {
-          name: "state25"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript2"
-            script: { picture.source = imagesList[0][2]
-            }
-          }
-        },
+
 
         State {
           name: "state31"
@@ -286,7 +203,8 @@ Page {
             name: "stateScript31"
             script: {
                 video.stop()
-                picture.source = imageFolderModel.folder + "/landscape1.jpg"
+                picture.source = imageFolderModel.folder + "/landscape4.jpg"
+                picture.visible = true
             }
           }
         },
@@ -309,7 +227,7 @@ Page {
             name: "stateScript33"
             script: {
                 video.stop()
-                picture.source = imagesList[0][2]
+                picture.source = imageFolderModel.folder + "/landscape6.jpg"
                 picture.visible = true
             }
           }
@@ -333,68 +251,30 @@ Page {
             name: "stateScript35"
             script: {
                 webView.visible = false
-                picture.source = imagesList[0][1]
+                picture.source = imageFolderModel.folder + "/landscape7.jpg"
                 picture.visible = true
             }
           }
         },
+
+
         State {
-          name: "state41"
+          name: "state4"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript4"
-            script: { picture.source = imageFolderModel.folder + "/landscape3.jpg"
+            script: { picture.source = imageFolderModel.folder + "/landscape8.jpg"
             }
           }
         },
-        State {
-          name: "state42"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript4"
-            script: {
-//                picture.visible = false
-//                video.source = videoFolderModel.folder + "/video4.avi"
-                //video.play()
-            }
-          }
-        },
-        State {
-          name: "state43"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript4"
-            script: {
-                video.stop()
-                picture.source = imagesList[0][1]
-                picture.visible = true
-            }
-          }
-        },
-        State {
-          name: "state44"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript4"
-            script: { picture.source = imagesList[0][2]
-            }
-          }
-        },
-        State {
-          name: "state45"
-          PropertyChanges {target: top1}
-          StateChangeScript {
-            name: "stateScript4"
-            script: { picture.source = imagesList[0][1]
-            }
-          }
-        },
+
+
         State {
           name: "state51"
           PropertyChanges {target: top1}
           StateChangeScript {
             name: "stateScript51"
-            script: { picture.source = imageFolderModel.folder + "/landscape1.jpg"
+            script: { picture.source = imageFolderModel.folder + "/landscape9.jpg"
             }
           }
         },
@@ -405,7 +285,7 @@ Page {
             name: "stateScript52"
             script: {
                 picture.visible = false
-                video.source = videoFolderModel.folder + "/video5.avi"
+                video.source = videoFolderModel.folder + "/video1.avi"
                 //video.play()
             }
           }
@@ -417,7 +297,7 @@ Page {
             name: "stateScript53"
             script: {
                 video.stop()
-                picture.source = imagesList[0][2]
+                picture.source = imageFolderModel.folder + "/landscape3.jpg"
                 picture.visible = true
             }
           }
@@ -429,7 +309,7 @@ Page {
             name: "stateScript54"
             script: { //picture.source = imagesList[0][0]
                 picture.visible = false
-                video.source = videoFolderModel.folder + "/video4.avi"
+                video.source = videoFolderModel.folder + "/video2.avi"
             }
           }
         },
@@ -447,64 +327,6 @@ Page {
         }
       ]
 
-//    Rectangle {
-//        id: top1
-//        width: 600
-//        height: 600
-//        color: "#f9f0ef"
-
-//        ListView {
-//            width: 1920
-//            height: 1080
-
-//            FolderListModel {
-//                folder: "images"
-//                id: folderModel
-//                nameFilters: ["*.jpg", "*.png", "*.gif"]
-//            }
-
-//            Image {
-//                width: 1920
-//                height: 1080
-//                fillMode: Image.PreserveAspectFit
-//                smooth: true
-//                source: folderModel.folder + "/" + "landscape.jpg"
-
-//            }
-
-//            Component {
-//                id: fileDelegate
-//                Column {
-//                    Image {
-//                        width: 200
-//                        height: 200
-//                        fillMode: Image.PreserveAspectFit
-//                        smooth: true
-//                        source: folderModel.folder + "/" + fileName
-//                    }
-//                    Text { text: fileName }
-//                }
-//            }
-
-//                Text {
-//                    id: intext
-//                    text: fileName
-//                    onTextChanged: anotherModel.append([{name: intext.text }])
-//                }
-
-
-           // model: folderModel
-            //delegate: fileDelegate
-       // }
-//   }
-
-//    Image {
-//        source: "landscape.jpg"
-//        sourceSize.width: 1920
-//        sourceSize.height: 1080
-
-//    }
-
     Rectangle {
         y: 880
         width: 1920
@@ -512,15 +334,9 @@ Page {
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: "steelblue" }
-//            GradientStop { position: 0.25; color: "lightsteelblue" }
-//            GradientStop { position: 0.4; color: "#d5e3f3" }
             GradientStop { position: 0.5; color: "lightsteelblue" }
-//            GradientStop { position: 0.6; color: "#d5e3f3" }
-//            GradientStop { position: 0.75; color: "lightsteelblue" }
             GradientStop { position: 1.0; color: "steelblue" }
         }
-//        color: "lightsteelblue"
-//        anchors.bottom: parent
     }
 
     Rectangle {
@@ -567,11 +383,7 @@ Page {
 
        gradient: Gradient {
            GradientStop { position: 0.0; color: "steelblue" }
-//            GradientStop { position: 0.25; color: "lightsteelblue" }
-//            GradientStop { position: 0.4; color: "#d5e3f3" }
            GradientStop { position: 0.5; color: "lightsteelblue" }
-//            GradientStop { position: 0.6; color: "#d5e3f3" }
-//            GradientStop { position: 0.75; color: "lightsteelblue" }
            GradientStop { position: 1.0; color: "steelblue" }
        }
 
@@ -608,20 +420,6 @@ Page {
            }
        }
 
-
-
-//       Text {
-//           id: name
-//           text: qsTr("text")
-//           anchors.centerIn: parent
-//       }
-
-//       Timer
-
-    }
-
-
-
 //    ListView {
 //        anchors.fill: parent;
 //        model: Qt.fontFamilies()
@@ -634,5 +432,5 @@ Page {
 //                text: modelData;
 //            }
 //        }
-//    }
+    }
 }
