@@ -5,3 +5,7 @@ Tablica informacyjna działająca na urządzeniu Raspberry Pi, umożliwiająca z
 ### Wykonawcy projektu
 - Oliwia Bartosik
 - Radosław Michałek 
+
+# Dokumentacja
+
+https://docs.google.com/document/d/147hUNb7kBIZolGFl8HOt1Tg-2T3JsTnM4d9lEAo2Pkw/edit?usp=sharing
