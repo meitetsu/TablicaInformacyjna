@@ -1,12 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import Qt.labs.folderlistmodel 2.12
+import QtMultimedia 5.12
+import QtWebView 1.1
+import QtWebEngine 1.8
 
 Page {
+    id: top1
     visible: true
     width: 1920
     height: 1080
 
-    property int counter: 0
+
     property bool branch // Controls if a state has a branch
     property int currentIndex: 0 // Current index for outer loop
     property int innerCounter: 0 // Current index for inner (branch) loop
@@ -16,271 +21,311 @@ Page {
         [true, 5], [false, 1], [true, 5], [false, 1], [true, 5]
     ]
 
-    property variant imagesList: [
-        [ "landscape.jpg" ], [ "landscape02.jpg" ], [ "landscape03.jpg" ]
-    ]
+//    property variant imagesList: [
+//        [ "images/landscape1.jpg", "images/landscape2.jpg", "images/landscape3.jpg",
+//         "images/landscape4.jpg", "images/landscape5.jpg", "images/landscape6.jpg",
+//         "images/landscape7.jpg", "images/landscape8.jpg", "images/landscape9.jpg" ]
+//    ]
 
     property variant stateNames: [
         ["state11", "state12", "state13", "state14", "state15"],
         ["state2"],
+        //["state21", "state22", "state23", "state24", "state25"],
         ["state31", "state32", "state33", "state34", "state35"],
         ["state4"],
+        //["state41", "state42", "state43", "state44", "state45"],
         ["state51", "state52", "state53", "state54", "state55"]
     ]
 
-    Rectangle {
-        id: top1
+    property ListModel anotherModel: ListModel {}
+
+    property FolderListModel imageFolderModel: FolderListModel {
+        folder: "images"
+        id: imageFolderModel
+        nameFilters: ["*.jpg", "*.png", "*.gif"]
+    }
+
+    property FolderListModel videoFolderModel: FolderListModel {
+        folder: "video"
+        id: videoFolderModel
+        nameFilters: ["*.avi"]
+    }
+
+    property FolderListModel htmlFolderModel: FolderListModel {
+        folder: "html"
+        id: htmlFolderModel
+        nameFilters: ["*.html", "*.htm"]
+    }
+
+    Image {
+        id: picture
         width: 1920
         height: 1080
-        color: "#f9f0ef"
+        fillMode: Image.PreserveAspectFit
+        //source: "images/landscape.jpg"
+    }
 
+    Video {
+        id: video
+        width: 1920
+        height: 1080
+        //source: "video/flame.avi"
+        autoPlay: true
+        loops: MediaPlayer.Infinite
+    }
 
+    WebView {
+        id: webView
+        anchors.fill: parent
+        //url: "http://www.google.pl/"
+    }
 
-        Rectangle {
-            id: frame
-            x: 60; y: 60
-            width: 350
-            height: 30
-            color: "white"
+    property int counter: 0
 
-            Rectangle {
-              Text {
-                id: literal
-                text: "This is the initial state. A timer generates state transitions."
-              }
+    Timer {
+        id: imageTime
+        interval: 10000
+        running: true
+        repeat: true
+
+        /* https://wiki.qt.io/QML_States_Controlling */
+
+        onTriggered: {
+
+            if (counter < 5) {
+                branch = statesParameters[counter][0];
             }
-          }
-
-        states: [
-            State {
-              name: "state11"
-              PropertyChanges {target: top1; color: "tan"}
-              StateChangeScript {
-                name: "stateScript11"
-                script: {
-                  literal.text = "Cupressaceae - State 11"
-                  picture.source = imagesList[0][2]
-                }
-              }
-            },
-            State {
-              name: "state12"
-              PropertyChanges {target: top1; color: "teal"}
-              StateChangeScript {
-                name: "stateScript12"
-                script: {
-                  literal.text = "Cupressaceae - State 12"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state13"
-              PropertyChanges {target: top1; color: "plum"}
-              StateChangeScript {
-                name: "stateScript13"
-                script: {
-                  literal.text = "Cupressaceae - State 13"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state14"
-              PropertyChanges {target: top1; color: "steelblue"}
-              StateChangeScript {
-                name: "stateScript14"
-                script: {
-                  literal.text = "Cupressaceae - State 14"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state15"
-              PropertyChanges {target: top1; color: "darkorange"}
-              StateChangeScript {
-                name: "stateScript15"
-                script: {
-                  literal.text = "Cupressaceae - State 15"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state2"
-              PropertyChanges {target: top1; color: "lavender"}
-              StateChangeScript {
-                name: "stateScript2"
-                script: {
-                  literal.text = "Cupressaceae - State 2"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-
-            State {
-              name: "state31"
-              PropertyChanges {target: top1; color: "olive"}
-              StateChangeScript {
-                name: "stateScript31"
-                script: {
-                  literal.text = "Cupressaceae - State 31"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state32"
-              PropertyChanges {target: top1; color: "darksalmon"}
-              StateChangeScript {
-                name: "stateScript32"
-                script: {
-                  literal.text = "Cupressaceae - State 32"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state33"
-              PropertyChanges {target: top1; color: "darkolivegreen"}
-              StateChangeScript {
-                name: "stateScript33"
-                script: {
-                  literal.text = "Cupressaceae - State 33"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state34"
-              PropertyChanges {target: top1; color: "lightblue"}
-              StateChangeScript {
-                name: "stateScript34"
-                script: {
-                  literal.text = "Cupressaceae - State 34"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state35"
-              PropertyChanges {target: top1; color: "wheat"}
-              StateChangeScript {
-                name: "stateScript35"
-                script: {
-                  literal.text = "Cupressaceae - State 35"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state4"
-              PropertyChanges {target: top1; color: "thistle"}
-              StateChangeScript {
-                name: "stateScript4"
-                script: {
-                  literal.text = "Cupressaceae - State 4"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state51"
-              PropertyChanges {target: top1; color: "mediumaquamarine"}
-              StateChangeScript {
-                name: "stateScript51"
-                script: {
-                  literal.text = "Cupressaceae - State 51"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state52"
-              PropertyChanges {target: top1; color: "lightpink"}
-              StateChangeScript {
-                name: "stateScript52"
-                script: {
-                  literal.text = "Cupressaceae - State 52"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state53"
-              PropertyChanges {target: top1; color: "darkseagreen"}
-              StateChangeScript {
-                name: "stateScript53"
-                script: {
-                  literal.text = "Cupressaceae - State 53"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state54"
-              PropertyChanges {target: top1; color: "lightsalmon"}
-              StateChangeScript {
-                name: "stateScript54"
-                script: {
-                  literal.text = "Cupressaceae - State 54"
-                  picture.source = imagesList[0][0]
-                }
-              }
-            },
-            State {
-              name: "state55"
-              PropertyChanges {target: top1; color: "mediumvioletred"}
-              StateChangeScript {
-                name: "stateScript55"
-                script: {
-                  literal.text = "Roses - State55"
-                  picture.source = imagesList[0][1]
-                }
-              }
+            else {
+                Qt.quit()
             }
-          ]
 
-        Timer {
-            id: imageTime
-            interval: 2000
-            running: true
-            repeat: true
-
-            onTriggered: {
-
-                if (counter < 5)
-                    branch = statesParameters[counter][0];
-                else
-                    Qt.quit();
-
-                if (branch == false) {
-                    innerCounter = 0;
+            if (branch == false) {
+                innerCounter = 0;
+                top1.state = stateNames[counter][innerCounter];
+                counter = counter + 1;
+                currentIndex = counter;
+                if (innerCounter < 5) {
                     top1.state = stateNames[counter][innerCounter];
-                    counter = counter + 1;
-                    currentIndex = counter;
-                } else {
-                    if (innerCounter < statesParameters[counter][1]) {
-                        top1.state = stateNames[counter][innerCounter];
-                        innerCounter = innerCounter+1;
-                    } else {
-                        counter = currentIndex+1;
-                        if (counter >= 5)
-                            Qt.quit();
-                    }
+                    innerCounter = innerCounter + 1
                 }
-
+            }
+            else {
+                if (innerCounter < statesParameters[counter][1]) {
+                    top1.state = stateNames[counter][innerCounter];
+                    innerCounter = innerCounter + 1;
+                }
+                else {
+                    counter = currentIndex + 1;
+                    if (counter >= 5)
+                        Qt.quit();
+                        //counter = 0;
+                }
             }
         }
     }
 
-//    Image {
-//        source: "landscape.jpg"
-//        sourceSize.width: 1920
-//        sourceSize.height: 1080
+    states: [
+        State {
+          name: "state11"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript11"
+            script: {
+                picture.source = imageFolderModel.folder + "/landscape1.jpg"
+                //video.play()
+            }
+          }
+        },
+        State {
+          name: "state12"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript12"
+            script: {
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video1.avi"
+            }
+          }
+        },
+        State {
+          name: "state13"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript13"
+            script: {
+                video.stop()
+//                picture.visible = true
+//                picture.source = imageFolderModel.folder + "/landscape2.jpg"
+                webView.url = "http://www.columbia.edu/~fdc/sample.html"
+            }
+          }
+        },
+        State {
+          name: "state14"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript14"
+            script: {
+                webView.visible = false
+                picture.source = imageFolderModel.folder + "/landscape2.jpg"
+                picture.visible = true
+            }
+          }
+        },
+        State {
+          name: "state15"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript15"
+            script: { picture.source = imageFolderModel.folder + "/landscape3.jpg"
+            }
+          }
+        },
 
-//    }
+
+        State {
+          name: "state2"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript2"
+            script: { //picture.source = imageFolderModel.folder + "/landscape2.jpg"
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video2.avi"
+            }
+          }
+        },
+
+
+        State {
+          name: "state31"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript31"
+            script: {
+                video.stop()
+                picture.source = imageFolderModel.folder + "/landscape4.jpg"
+                picture.visible = true
+            }
+          }
+        },
+        State {
+          name: "state32"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript32"
+            script: {
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video3.avi"
+                //video.play()
+            }
+          }
+        },
+        State {
+          name: "state33"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript33"
+            script: {
+                video.stop()
+                picture.source = imageFolderModel.folder + "/landscape6.jpg"
+                picture.visible = true
+            }
+          }
+        },
+        State {
+          name: "state34"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript34"
+            script: { //picture.source = imagesList[0][0]
+                picture.visible = false
+                webView.url = "http://www.ibdhost.com/help/html/"
+                webView.visible = true
+            }
+          }
+        },
+        State {
+          name: "state35"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript35"
+            script: {
+                webView.visible = false
+                picture.source = imageFolderModel.folder + "/landscape7.jpg"
+                picture.visible = true
+            }
+          }
+        },
+
+
+        State {
+          name: "state4"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript4"
+            script: { picture.source = imageFolderModel.folder + "/landscape8.jpg"
+            }
+          }
+        },
+
+
+        State {
+          name: "state51"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript51"
+            script: { picture.source = imageFolderModel.folder + "/landscape9.jpg"
+            }
+          }
+        },
+        State {
+          name: "state52"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript52"
+            script: {
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video1.avi"
+                //video.play()
+            }
+          }
+        },
+        State {
+          name: "state53"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript53"
+            script: {
+                video.stop()
+                picture.source = imageFolderModel.folder + "/landscape3.jpg"
+                picture.visible = true
+            }
+          }
+        },
+        State {
+          name: "state54"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript54"
+            script: { //picture.source = imagesList[0][0]
+                picture.visible = false
+                video.source = videoFolderModel.folder + "/video2.avi"
+            }
+          }
+        },
+        State {
+          name: "state55"
+          PropertyChanges {target: top1}
+          StateChangeScript {
+            name: "stateScript55"
+            script: { //picture.source = imagesList[0][1]
+                video.stop()
+                webView.url = "http://csis.pace.edu/~wolf/HTML/htmlnotepad.htm"
+                webView.visible = true
+            }
+          }
+        }
+      ]
 
     Rectangle {
         y: 880
@@ -289,19 +334,13 @@ Page {
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: "steelblue" }
-//            GradientStop { position: 0.25; color: "lightsteelblue" }
-//            GradientStop { position: 0.4; color: "#d5e3f3" }
             GradientStop { position: 0.5; color: "lightsteelblue" }
-//            GradientStop { position: 0.6; color: "#d5e3f3" }
-//            GradientStop { position: 0.75; color: "lightsteelblue" }
             GradientStop { position: 1.0; color: "steelblue" }
         }
-//        color: "lightsteelblue"
-//        anchors.bottom: parent
     }
 
     Rectangle {
-        id:marquee
+        id: marquee
         x: 280
         y: 910
         width: 1600
@@ -313,19 +352,22 @@ Page {
             text: qsTr("Przykładowy tekst niemający większego sensu, ale coś tu trzeba wpisać.")
             font {
                 capitalization: Font.AllUppercase
-                family: "DejaVu Serif"
-                pixelSize: 50
+                weight: Font.DemiBold
+                family: "Liberation Sans Narrow"
+                pixelSize: 70
             }
+            style: Text.Outline
+            styleColor: "gray"
             horizontalAlignment: Text.AlignLeft
             //anchors.horizontalCenter: parent
             anchors.verticalCenter: parent.verticalCenter
 
             x:parent.width
-            NumberAnimation on x{
+            NumberAnimation on x {
                 from: marquee.width
                 to: -1*message.width
                 loops: Animation.Infinite
-                duration: 3000
+                duration: 12000
             }
         }
     }
@@ -341,11 +383,7 @@ Page {
 
        gradient: Gradient {
            GradientStop { position: 0.0; color: "steelblue" }
-//            GradientStop { position: 0.25; color: "lightsteelblue" }
-//            GradientStop { position: 0.4; color: "#d5e3f3" }
            GradientStop { position: 0.5; color: "lightsteelblue" }
-//            GradientStop { position: 0.6; color: "#d5e3f3" }
-//            GradientStop { position: 0.75; color: "lightsteelblue" }
            GradientStop { position: 1.0; color: "steelblue" }
        }
 
@@ -382,18 +420,6 @@ Page {
            }
        }
 
-
-
-//       Text {
-//           id: name
-//           text: qsTr("text")
-//           anchors.centerIn: parent
-//       }
-
-//       Timer
-
-    }
-
 //    ListView {
 //        anchors.fill: parent;
 //        model: Qt.fontFamilies()
@@ -406,7 +432,5 @@ Page {
 //                text: modelData;
 //            }
 //        }
-//    }
+    }
 }
-
-

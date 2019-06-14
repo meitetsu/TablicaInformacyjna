@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0047)http://csis.pace.edu/~wolf/HTML/htmlnotepad.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win95; U) [Netscape]">
+   <title>Creating basic HTML files</title>
+</head>
+<body link="#0000FF" vlink="#800080" bgcolor="#FFFFFF">
+<b>Creating Basic HTML Files</b> 
+<p><font size="+0">Hypertext Markup Language is the standard for documents
+for the World Wide Web. The HTML file contains:</font>
+</p><ul>
+<li>
+<font size="+0">The text that appears.</font></li>
+
+<li>
+<font size="+0">Formatting instructions for the text.</font></li>
+
+<li>
+<font size="+0">Definitions of hyperlinks (pieces of text, sometimes called
+hot words or images, that, when you click on them take you to another document,
+located on the same computer or a different computer).</font></li>
+
+<li>
+<font size="+0">Instructions for inserting images and sounds.</font></li>
+
+<li>
+<font size="+0">Programs or calls to programs.</font></li>
+</ul>
+<font size="+0">HTML files reside on what is termed a <b>server</b> computer
+and are interpreted by a <b>browser</b> program such as Netscape Navigator
+or Microsoft Internet Explorer on the user’s computer. This computer is
+called the <b>client</b>. These notes will describe how to create a simple
+HTML document.</font>
+<p><b>Overview of Common Tags</b>
+</p><p><font size="+0">An HTML file consists of text, that is, the words that
+you want to appear in your document and embedded instructions called HTML
+<b>tags</b>. The tags give the browser instructions that include formatting,
+display of images, and hyperlinks. The technical name for the type of data
+in an HTML file is ASCII text. We first go over some basic tags, and then
+there will be an exercise using <b>NotePad.</b> HTML tags begin with the
+<b>&lt; </b>symbol and end with <b>/&gt;</b>. For example, an HTML file begins
+with <b>&lt;html&gt; </b>and ends with <b>&lt;/html&gt;. </b>The letters inside
+the tags may be in either lower or upper case.</font>
+</p><p><font size="+0">The tags, &lt;html&gt; and &lt;/html&gt;, are examples of <i>paired</i>
+tags. The second one is like the first one except that it begins with a
+<b>/ </b>symbol. A pair of tags affects how a browser will display the
+text between the first tag and the second tag. Leaving out the second tag
+usually changes the display of the rest of the document.</font>
+</p><p><font size="+0">The standard format for an HTML file consists of the <b>head</b>
+and the <b>body</b>. The tags for these are:</font>
+</p><p><font size="+0">&lt;html&gt;</font>
+<br><font size="+0">&nbsp;&nbsp;&nbsp; &lt;head&gt;</font>
+<br><i><font size="+0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The document
+title and other information used by search engines.</font></i>
+<br><font size="+0">&nbsp;&nbsp;&nbsp; &lt;/head&gt;</font>
+<br><font size="+0">&nbsp;&nbsp;&nbsp; &lt;body&gt;</font>
+<br><i><font size="+0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; all the
+text and instructions for the document</font></i>
+<br><font size="+0">&nbsp;&nbsp;&nbsp; &lt;/body&gt;</font>
+<br><font size="+0">&lt;/html&gt;</font>
+</p><p><font size="+0">The most common tag for the head part of an HTML file
+is the <b>title</b> tag. It is used to put information about the document
+in the title bar. Note: it is common to include a big, showy heading in
+an HTML document that you may refer to as the title, but in the technical
+language of HTML, the title is the text that shows up in the title bar
+at the top of the browser.</font>
+</p><p><font size="+0">&lt;title&gt; My First HTML File &lt;/title&gt;</font>
+</p><p><font size="+0">In this example, the phrase ‘My First HTML File’ will
+show up in the title bar.</font>
+</p><p><font size="+0">We now describe four common types of HTML tags that go
+in the body section of the file.</font>
+</p><ul>
+<li>
+<font size="+0">The &lt;<b>h&gt;</b> tags govern text size (<b>h</b> stands
+for <b>heading</b>).</font></li>
+
+<li>
+<font size="+0">The &lt;<b>img src&gt;</b> tag is used for including <b>images</b>.</font></li>
+
+<li>
+<font size="+0">The &lt;<b>p&gt; </b>tag creates a new <b>paragraph</b>.</font></li>
+
+<li>
+<font size="+0">The &lt;<b>a&gt;</b> tag indicates a link to another part of
+the same document or to another document (<b>a</b> is for <b>anchor</b>).</font></li>
+</ul>
+<font size="+0">You can control the size of the text by placing a piece of
+text between one of the heading tags as in the following example:</font>
+<p><font size="+0">&lt;h1&gt; News Stories &lt;/h1&gt;</font>
+</p><p><font size="+0">The tags, &lt;h1&gt; and &lt;/h1&gt;, will make the text large.
+Some browsers may even use a different font. <b>H1</b> creates the largest
+text and <b>H7 </b>the smallest. Please be aware that the system does not
+expect or check for any consistency. There are not automatic line breaks
+after a heading change. You may nest different headings.</font>
+</p><p><font size="+0">To insert an image, you use the single <b>img</b> tag
+as in the next example:</font>
+</p><p><font size="+0">&lt;img src = "name.ext"&gt;</font>
+<br><font size="+0">Here name.ext is the file name and extension of the image
+file. The ext will be either <b>.jpg</b> or <b>.gif. </b>These are two
+types of images. You can also create your own images using products such
+as Paint Shop Pro or Adobe Photo Shop. You just have to save the file as
+a .gif or a .jpg. Similarly, you can use these tools as well as Microsoft
+Photo Editor to crop or resize an image.</font>
+</p><p><font size="+0">To produce what appears to be a new <b>paragraph</b>,
+use the single tag <b>&lt;p&gt;</b>. There is also a tag, <b>&lt;br&gt;</b>,
+that creates a <b>line break</b>. In some browsers, they may have the same
+effect. In others, the paragraph tag will insert a blank line while the
+line break tag will not.</font>
+</p><p><font size="+0">The &lt;<b>a&gt; </b>tag produces a link to another document
+or website. These come in pairs. The text between the <b>&lt;a&gt;</b> and
+the <b>&lt;/a&gt;</b> forms the <b>clickable</b> part. If the URL for the
+site to be linked to is </font>http://www.nytimes.com,<font size="+0"> then
+the format to use should be:</font>
+</p><p><font size="+0">&lt;a href = "</font>http://www.nytimes.com"<font size="+0">&gt;
+A well-known newspaper’s online site.&lt;/a&gt;</font>
+</p><p><font size="+0">Notice that the text following <b>href</b><i> </i>is surrounded
+by quotation marks. You also use the &lt;<b>a&gt;</b> tags for linking to
+local files <b>or</b> to HTML files in the same directory on the server.
+The format is</font>
+</p><p><font size="+0">&lt;a href = "secondfile.htm"&gt; more information &lt;/a&gt;</font>
+</p><p><font size="+0">where <i>secondfile.htm</i> is the name of the other file.
+If the browser does <b>not</b> read the http:// then it knows to go to
+the same directory as the HTML file to find this new file. One more use
+of an &lt;<b>a&gt;</b> tag is for marking and also linking to different parts
+of the same document. This is done as follows:</font>
+</p><p><font size="+0">&lt;a name = "details"&gt; Details &lt;/a&gt;</font>
+</p><p><font size="+0">This use of the &lt;<b>a&gt;</b> tag gives a name to a position
+in the HTML file. At any other point in the file, you can use</font>
+</p><p><font size="+0">&lt;a href = "#details"&gt; Go to Details &lt;/a&gt;</font>
+</p><p><font size="+0">to go to a previously marked point in the file.</font>
+</p><p><font size="+0">These tags are the most important, but there are many
+others. You can look at the underlying HTML of any document by clicking
+on <b>View</b> and then <b>Page Source</b> in Netscape. You can use this
+to learn about new tags.</font>
+<br>&nbsp;
+</p><p><b>Using NotePad</b>
+</p><p><font size="+0">An HTML file can be created using any text editor. <b>NotePad</b>
+is such an editor and is part of the typical installation on Windows computers.
+Here is a simple example based on favorite or best Web sites for some special
+hobby or task. Before doing this exercise, you should select a topic and
+find two or three Web sites for the topic. You also need to download an
+image from each site. Images can be copied from a Web site to your own
+machine by positioning the cursor over the image and then clicking on the
+<b>right</b> mouse button. You will get a dialogue box with one option,
+<b>Save Image As</b>. You then get a chance to rename the image and also
+locate it in a specific folder.</font>
+</p><ol>
+<li>
+<font size="+0">Start <b>NotePad</b>. This can usually be done by clicking
+on the <b>Start</b> button, then on <b>Accessories</b> and then on <b>NotePad</b>.</font></li>
+
+<li>
+<font size="+0">Immediately put in what can be called the basic template
+by typing the following into the editor. You skip lines by hitting the
+enter key. Make sure it looks exactly like this and that you haven’t forgotten
+one of the &lt; or &gt; symbols.</font></li>
+
+<br><b><font size="+0">&lt;html&gt;</font></b>
+<br><b><font size="+0">&lt;head&gt; &lt;title&gt; &lt;/title&gt;</font></b>
+<br><b><font size="+0">&lt;/head&gt;</font></b>
+<br><b><font size="+0">&lt;body&gt;</font></b>
+<br><b><font size="+0">&lt;/body&gt;</font></b>
+<br><b><font size="+0">&lt;/html&gt;</font></b>
+<li>
+<font size="+0">Your example is going to require more than one line in the
+body portion of the file, but you can always insert new lines. Type in
+a title between the <b>&lt;title&gt;</b> and the <b>&lt;/title&gt;</b> tags.
+It can be <b>My First HTML File</b>.</font></li>
+
+<li>
+<font size="+0">We can make the body of this example begin with a large heading.
+(The temptation to use the term <i>title</i> is strong, but we will not,
+because this would confuse the html document title with the title inside
+the text.) Directly under the <b>&lt;body&gt;</b> tag, type in</font></li>
+
+<p><br><font size="+0">&lt;h1&gt; The Best Web Sites for <b>...</b>&lt;/h1&gt;</font>
+<br><font size="+0">Replace the three dots after the word, <i>for,</i> by
+the topic that you are using for this assignment.</font>
+</p><li>
+<font size="+0">At this point, you should compose a general paragraph on
+your topic and then a paragraph about each of the sites you have found.
+Enter the text below the heading. Here is a short example:</font></li>
+
+<p><br><font size="+0">If you are online and want or need to find out what
+is happening in the world, you can go to any of many news sites.</font>
+</p><p><font size="+0">The site I use the most is the online New York Times.</font>
+</p><p><font size="+0">One disadvantage of this site is that to go beyond the
+first page, you need to subscribe. It is free, but you need to choose a
+logon name and a password. However, you can arrange to save the information
+on the computer that you typically use. If you do this, you do not need
+to be concerned with logging on. The New York Times site is changed a few
+times during the day. It contains audio and video.</font>
+<br>&nbsp;
+</p><p><img src="./Creating basic HTML files_files/Image62.gif" height="319" width="392">
+<br>&nbsp;
+<br>&nbsp;
+</p><li>
+<img src="./Creating basic HTML files_files/Image63.gif" height="391" width="372"><font size="+0">The example we
+have given above will work as an HTML file. However, it can be improved
+in several ways. First of all, even though the text as written appears
+to have a paragraph break after the first sentence and another one before
+‘One disadvantage..’, the browser will display this as one continuous piece
+of text. For the most part, browsers ignore spacing and line breaks.</font></li>
+
+<li>
+<font size="+0">To put in a break, use the <b>&lt;p&gt;</b> tag in your example
+to break up the text into paragraphs. In terms of content, describe the
+type of owner of each of your examples and the business purposes, if any,
+for your site.</font></li>
+
+<li>
+<font size="+0">We want hyperlinks in our example. To do this, we put the
+phrase ‘Online New York Times’ between an <b>&lt;a&gt;</b> tag and an <b>&lt;/a&gt;</b>
+tag:</font></li>
+
+<br><font size="+0">&lt;a href="</font>http://www.nytimes.com"<font size="+0">&gt;
+Online New York Times &lt;/a&gt;</font>
+<br><font size="+0">Insert &lt;<b>a&gt; </b>tags for each of your sites. What
+you put in-between the <b>&lt;a&gt;</b> and <b>&lt;/a&gt;</b> tags is up to you.
+But you need to put in something! It can be the official name or something
+descriptive.</font>
+<li>
+<font size="+0">Now decide where you want to put your images. Use the <b>img
+</b>tag. Note: you can insert the same image more than once.</font></li>
+
+<li>
+<font size="+0">You are now ready to try out your HTML file. Click on <b>File</b>
+in NotePad and then <b>Save As</b>. Now give your file a name and also
+change the extension from <b>.txt</b> to <b>.htm</b>. Let us say you named
+it test1.htm</font></li>
+
+<li>
+<font size="+0">Minimize NotePad (by clicking on the underscore in the upper
+right corner of the window). Open up Netscape or whatever browser you use.
+Note: you can do this even in situations where you usually dial-in to an
+Internet Service Provider (such as Pace) first. You may get a message from
+the browser that it has failed to locate the home page. If you are doing
+this in a computer classroom or in the open labs, the computer is [almost]
+always online.</font></li>
+
+<br>&nbsp;
+<p>&nbsp;
+</p><p><font size="+0">Click on <b>OK </b>to close that dialogue box. Now (assuming
+you are using Netscape), click on <b>File</b> and then <b>Open Page</b>
+and <b>Browse</b>. You are opening a <b>local file</b> instead of going
+to a Web site. Use the operating system’s procedure for finding the file
+you just saved. Click on it and then click on <b>Open</b>. Your HTML file
+should be displayed in the browser. Notice any problems and fix them in
+NotePad. When you get back into the browser, you will have to click on
+<b>ReLoad</b> to get the newest version. If reload does not work, hold
+down the <b>shift</b> key while clicking on ReLoad. (In Internet Explorer,
+use the <b>control</b> key.)</font>
+<br><font size="+0"></font>&nbsp;
+</p><li>
+<font size="+0">One other change you may make to your file is to adjust the
+size of the images. You can do this by adding parameters to the <b>img</b>
+tag. For example,</font></li>
+
+<p><br><font size="+0">&lt;img src="picture.gif" align = left width = 100&gt;</font>
+</p><p><font size="+0">will align the image to the left. It will also change
+the width of the image to 100 pixels and make the height whatever size
+that will preserve the proportions of the original image. You can use both
+width and height parameters to set both values.</font>
+</p><li>
+<font size="+0">Lastly, return to the browser and reload your local file.
+You can now check to see that your links work correctly.</font></li>
+</ol>
+<b>Other Tools</b>
+<p><font size="+0">Several products exist for producing HTML. The advertising
+for these tend to give the impression that producing HTML is difficult
+and these products will make it easy. The real situation is that writing
+evocative text is a challenge and so is designing layouts and choosing
+(and producing) appropriate images. Putting in the right HTML tag is not
+the hard part. With that caveat, here are comments about a few of these
+tools.</font>
+</p><p><b>Using Specialized HTML Editors</b>
+</p><p><font size="+0">Several specialized editors exist for producing HTML.
+The so-called HTML editors help to produce the HTML source and show it
+on the screen. For example, you select text and then click on Heading 1
+on the toolbar and what you have selected is now between &lt;h1&gt; and &lt;/h1&gt;
+tags. These editors also allow you to click on image and then go to a series
+of dialogue boxes to select the image. These tools are <b>not</b> <i>what
+you see is what you get </i>editors (WYSIWYG) because you need to go to
+a browser to see the results. One example in this class is HTML Assistant
+Pro.</font>
+</p><p><b>Using Netscape Composer</b>
+</p><p><font size="+0">You can also edit your HTML document using Netscape Composer,
+a component of Netscape Communicator. To edit an existing file, open the
+file in Netscape Navigator the usual way and then go to <b>File</b> and
+then <b>Edit</b> page. To start a new file, you can invoke Netscape Composer
+directly. In Composer, click on <b>New</b>. For existing files, what you
+will see is very like the display form of the HTML. There is a toolbar
+for putting in tags. This includes icons for inserting images and links.
+When you choose to insert an image, the following box will appear. You
+can find the image using the button marked <b>Choose File...</b> You can
+also make other changes, if you wish.</font>
+</p><p><img src="./Creating basic HTML files_files/Image64.gif" height="387" width="461">
+</p><p><font size="+0">It can sometimes get tricky to do what you want in Composer
+and you may decide to return to NotePad where you can see all the tags.
+Another problem to be aware of is that Composer may put file addresses
+in a different form than you want. For example, it may insert the local
+drive name. This will prove problematic if and when you move the project
+to a server. Composer can be helpful for producing tables. The set of tags
+required here can get messy (not difficult, just complex).</font>
+</p><p><font size="+0">After the image of the NY Times Logo has been inserted,
+the picture will show up in Composer much the same as it will appear in
+a browser. Composer will have inserted the html tag used to link to an
+image. In this example, it would appear as</font>
+</p><p><font size="+0">&lt;P&gt;&lt;IMG SRC="nytlogo12.gif" HEIGHT=54 WIDTH=350&gt;</font>
+</p><p>You can see this for yourself by clicking on <b>View</b> and then on
+<b>Page Source</b>.
+</p><p>The following picture shows what the document will now look like in
+Composer.
+</p><p><img src="./Creating basic HTML files_files/Image65.gif" height="441" width="572">
+</p><p><b><font size="+0">Using Word</font></b>
+</p><p><font size="+0">Microsoft Word has an option to <b>Save As HTML</b>. This
+produces a reasonable version of the Word document. When you look at the
+HTML document, you will probably notice a lot of seemingly extra tags.
+The file will also contain special symbols such as <b>&amp;nbsp</b>; for
+non-blank space. If you are really in a hurry and have put a lot of formatting
+into the Word document, this is an option. However, another option is to
+simply copy-and-paste the text in the Word document into NotePad and then
+proceed. This will make it easier to plan and then design the document
+specifically for Web publication.</font>
+</p><p><b>Using PowerPoint</b>
+</p><p><font size="+0">Microsoft PowerPoint also has a facility to turn a presentation
+into HTML form for publication on the Web. When you click on <b>File</b>
+and then <b>Save As HTML</b>, this facility produces a large set of files
+appropriately linked so that the PowerPoint presentation can be viewed
+using a browser. You, the author, are asked several questions on the design
+of the viewing and also background information to go on the first page,
+which is similar to a table of contents. You should put all the files in
+a brand new folder (directory) just for this presentation.</font>
+<br><font size="+0"></font>&nbsp;
+
+
+</p></body></html>
